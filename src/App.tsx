@@ -1,8 +1,16 @@
-import {Fragment} from "react";
+// import {Fragment} from "react";
+
+// import io from "socket.io-client"
+
+import RCSMonitor from "./monitor/rcs";
+import CandyMonitor from "./monitor/candy";
 
 function App() {
   return (
-      <Fragment/>
+      <div className={"w-full h-screen bg-black grid grid-cols-2"}>
+        <RCSMonitor/>
+        <CandyMonitor/>
+      </div>
   );
 }
 
