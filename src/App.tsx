@@ -7,7 +7,7 @@ import CandyMonitor from "./monitor/candy";
 
 function App() {
   return (
-      <div className={"w-full h-screen bg-black grid grid-cols-2"}>
+      <div className={"h-screen bg-black grid grid-cols-2"}>
         <RCSMonitor/>
         <CandyMonitor/>
       </div>
