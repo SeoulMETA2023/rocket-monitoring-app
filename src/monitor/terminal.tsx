@@ -1,4 +1,4 @@
-import {ReactElement, useRef, useEffect} from "react";
+import {ReactElement, useRef, useEffect} from "react"
 
 interface Props {
     children: ReactElement[] | ReactElement

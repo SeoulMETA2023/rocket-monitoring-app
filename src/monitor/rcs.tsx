@@ -1,4 +1,4 @@
-import Terminal, {makeMessage} from "./terminal";
+import Terminal, {makeMessage} from "./terminal"
 
 export default function RCSMonitor() {
     return(
