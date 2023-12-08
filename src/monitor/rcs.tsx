@@ -1,9 +1,11 @@
+import Terminal, {makeMessage} from "./terminal";
+
 export default function RCSMonitor() {
     return(
-        <section className={"m-5 grid grid-cols-12 grid-rows-10 gap-2"}>
+        <section className={"m-5 grid grid-cols-12 grid-rows-10 gap-2 overflow-hidden"}>
             {/* title */}
             <div className={"col-span-full flex items-center"}>
-                <h1 className={"text-5xl font-bold text-white"}>RCS Rocket</h1>
+                <h1 className={"text-6xl font-bold text-white font-open-sans"}>RCS Rocket</h1>
             </div>
 
             {/* rocket model */}
@@ -12,13 +14,15 @@ export default function RCSMonitor() {
             </div>
 
             {/* description */}
-            <div className={"col-span-5 row-span-2"}>
-
+            <div className={"col-span-5 row-span-2 text-white font-noto-sans"}>
+                설명을 넣어주세요.
             </div>
 
             {/* terminal */}
             <div className={"col-span-5 row-span-3"}>
-
+                <Terminal>
+                    {makeMessage(1702512900, "hi")}
+                </Terminal>
             </div>
 
             {/* gyro 1 */}
@@ -56,5 +60,5 @@ export default function RCSMonitor() {
 
             </div>
         </section>
-    );
+    )
 }
