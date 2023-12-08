@@ -44,10 +44,6 @@ export default function CandyMonitor() {
             <div className={"col-span-3 row-span-2"}>
 
             </div>
-
-            <div className={"col-span-3 row-span-2"}>
-
-            </div>
         </section>
     );
 }

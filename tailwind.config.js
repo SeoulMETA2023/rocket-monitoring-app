@@ -10,8 +10,10 @@ module.exports = {
       }
     },
     colors: {
-      "black": "#1E1E1E",
-      "gray": "#A7A7AC",
+      "black": "#000000",
+      "gear-black": "#1E1E1E",
+      "light-gray": "#A7A7AC",
+      "dim-gray": "#696969",
       "white": "#FFFFFF"
     }
   },

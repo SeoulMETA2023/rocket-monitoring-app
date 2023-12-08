@@ -6,12 +6,12 @@ import RCSMonitor from "./monitor/rcs";
 import CandyMonitor from "./monitor/candy";
 
 function App() {
-  return (
-      <div className={"h-screen bg-black grid grid-cols-2"}>
-        <RCSMonitor/>
-        <CandyMonitor/>
+    return (
+      <div className={"h-screen bg-gear-black grid grid-cols-2"}>
+          <RCSMonitor/>
+          <CandyMonitor/>
       </div>
-  );
+    );
 }
 
 export default App;
