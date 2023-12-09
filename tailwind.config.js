@@ -10,7 +10,7 @@ module.exports = {
     },
     extend: {
       animation: {
-        "loading": "spin 1.5s ease-in-out infinite"
+        "loading": "spin 1.3s ease-in-out infinite"
       },
       gridTemplateRows: {
         "10": "repeat(10, minmax(0, 1fr))"
@@ -24,7 +24,6 @@ module.exports = {
       "gear-black": "#1E1E1E",
       "light-gray": "#A7A7AC",
       "dim-gray": "#696969",
-      "dim-gray-a70": "rgba(105,105,105,0.7)",
       "white": "#FFFFFF",
       "pastel-red": "#EE504A",
       "pastel-yellow": "#F8BD45",

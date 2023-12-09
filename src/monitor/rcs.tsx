@@ -1,6 +1,7 @@
 import Terminal, {makeMessage} from "./terminal"
 
 export default function RCSMonitor() {
+
     return(
         <section className={"m-5 grid grid-cols-12 grid-rows-10 gap-2 overflow-hidden"}>
             {/* title */}
@@ -27,7 +28,6 @@ export default function RCSMonitor() {
 
             {/* gyro 1 */}
             <div className={"col-span-4 row-span-2 bg-dim-gray rounded-xl"}>
-
             </div>
 
             {/* gyro 2 */}
