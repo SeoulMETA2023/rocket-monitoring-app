@@ -1,14 +1,14 @@
-import * as express from "express";
-import * as path from "path";
+import express, { Express, Request, Response } from "express"
+import * as path from "path"
 
-const app = express()
+const app: Express = express()
 
 app.use(express.static(path.join(__dirname, "/rocket-monitor/build")))
 
-app.get('/', function (req, res) {
+app.get("/", (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "/rocket-monitor/build/index.html"));
 })
 
-app.listen(3000, function () {
+app.listen(3000,  () => {
     console.log("listening on 3000")
 });
