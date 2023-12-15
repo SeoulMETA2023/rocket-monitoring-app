@@ -1,10 +1,15 @@
 import {ReactElement, useRef, useEffect} from "react"
 
-interface Props {
+interface TerminalProps {
     children: ReactElement[] | ReactElement
 }
 
-export default function Terminal(props: Props) {
+interface MessageProps {
+    timestamp: number
+    content: string
+}
+
+export default function Terminal(props: TerminalProps) {
     const containerRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
@@ -34,8 +39,8 @@ export default function Terminal(props: Props) {
     )
 }
 
-export function makeMessage(timestamp: number, content: string) {
-    const date = new Date(timestamp * 1000)
+export function Message(props: MessageProps) {
+    const date = new Date(props.timestamp * 1000)
 
     return (
         <div>
@@ -49,7 +54,7 @@ export function makeMessage(timestamp: number, content: string) {
                 {String(date.getSeconds()).padStart(2, "0")}
             </span>
             &nbsp;
-            <span className={"text-white"}>{content}</span>
+            <span className={"text-white"}>{props.content}</span>
         </div>
     )
 }

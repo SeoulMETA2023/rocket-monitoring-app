@@ -1,4 +1,4 @@
-import Terminal, {makeMessage} from "./terminal"
+import Terminal, {Message} from "./terminal"
 import Visualizer from "./visualizer";
 
 export default function RCSMonitor() {
@@ -12,7 +12,7 @@ export default function RCSMonitor() {
 
             {/* rocket model */}
             <div className={"col-span-7 row-span-5 bg-dim-gray rounded-xl"}>
-                <Visualizer/>
+                <Visualizer visible={true}/>
             </div>
 
             {/* description */}
@@ -23,8 +23,7 @@ export default function RCSMonitor() {
             {/* terminal */}
             <div className={"col-span-5 row-span-3"}>
                 <Terminal>
-                    {makeMessage(1702512900, "hi")}
-                    {makeMessage(1702512900, "hi")}
+                    <Message timestamp={1702512900} content={"hi"}/>
                 </Terminal>
             </div>
 
