@@ -1,62 +1,55 @@
-import {useEffect, useState} from "react";
+import {useRef} from "react";
 // import { createRoot } from 'react-dom/client'
-import { Canvas, useLoader } from '@react-three/fiber'
+import {Canvas, useFrame, useLoader} from '@react-three/fiber'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
-import {Box3, Object3D, Vector3} from "three";
+import {Box3, Group, Object3DEventMap, Vector3} from "three";
 
-interface Props {
-    className?: string
+interface VisualizerProps {
+    visible?: boolean
+    path: string
 }
 
-export default function Visualizer(props: Props) {
-    const rocketObject = useLoader(OBJLoader, '/test-rocket.obj')
-    let [spin, setSpin] = useState<number>(0)
-    const box = new Box3().setFromObject(rocketObject)
-    const size = new Vector3()
-    box.getSize(size)
+interface RocketObjectProps {
+    path: string
+}
 
-    const pos = new Vector3(0, - size.y / 2, -130)
-
-    useEffect(() => {
-        setTimeout(() => {
-            setSpin(spin + Math.PI / 180)
-        }, 10)
-    })
+export default function Visualizer(props: VisualizerProps) {
+    let visible = true
+    if (props.visible === undefined || !props.visible) {
+        visible = false
+    }
 
     return (
-        <Canvas className={"bg-gear-black border-dim-gray border-2 rounded-xl" + ` ${props.className !== undefined? props.className : ""}`}>
+        <Canvas className={"bg-gear-black border-dim-gray border-2 rounded-xl" + ` ${visible? "" : "invisible"}`}
+                camera={{"fov": 80, "position": [0, 0, 0]}} >
             <ambientLight intensity={0.6} />
             <directionalLight position={[0, 0, 10]}/>
-            <primitive
-                object={rocketObject}
-                position={pos}
-                rotation={[- Math.PI / 2, spin, 0]}/>
+            <RocketObject path={props.path}/>
         </Canvas>
     )
 }
 
-/**
- * Rotate about point
- * @param obj your object (THREE.Object3D or derived)
- * @param point the point of rotation (THREE.Vector3)
- * @param axis the axis of rotation (normalized THREE.Vector3)
- * @param theta radian value of rotation
- * @param pointIsWorld boolean indicating the point is in world coordinates (default = false)
- */
-function rotateAboutPoint(obj: Object3D, point: Vector3, axis: Vector3, theta: number, pointIsWorld: boolean = false){
-    pointIsWorld = (pointIsWorld === undefined)? false : pointIsWorld
+function RocketObject(props: RocketObjectProps) {
+    const obj = useLoader(OBJLoader, props.path)
 
-    if(pointIsWorld){
-        obj.parent?.localToWorld(obj.position) // compensate for world coordinate
-    }
+    const rocketRef = useRef<Group<Object3DEventMap>>()
 
-    obj.position.sub(point) // remove the offset
-    obj.position.applyAxisAngle(axis, theta) // rotate the POSITION
-    obj.position.add(point) // re-add the offset
+    useFrame(({}) => {
+        const currentRocket = rocketRef.current
+        if (currentRocket === undefined) {
+            return
+        }
 
-    if(pointIsWorld){
-        obj.parent?.worldToLocal(obj.position) // undo world coordinates compensation
-    }
+        const box = new Box3().setFromObject(currentRocket)
+        const size = new Vector3()
+        box.getSize(size)
 
-    obj.rotateOnAxis(axis, theta) // rotate the OBJECT
+        currentRocket.position.set(0, - size.y / 2, -130)
+    })
+
+    return (
+        <primitive ref={rocketRef}
+                   object={obj}
+                   rotation={[-Math.PI / 2, 0, 0]}/>
+    )
 }

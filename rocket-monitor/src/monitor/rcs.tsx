@@ -12,7 +12,7 @@ export default function RCSMonitor() {
 
             {/* rocket model */}
             <div className={"col-span-7 row-span-5 bg-dim-gray rounded-xl"}>
-                <Visualizer visible={true}/>
+                <Visualizer visible={true} path={"/test-rocket.obj"}/>
             </div>
 
             {/* description */}
