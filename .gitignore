@@ -6,6 +6,10 @@
 /.pnp
 .pnp.js
 
+# test
+venv
+test-webserver.py
+
 # testing
 /coverage
 
