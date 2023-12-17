@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Terminal, {Message} from "./terminal"
-import Visualizer from "./visualizer";
-import {StatusLine} from "./statusGraph";
+import Terminal, {Message} from "../module/terminal"
+import Visualizer from "../module/visualizer";
+import {StatusLine} from "../module/statusGraph";
 
 export default function RCSMonitor() {
 
