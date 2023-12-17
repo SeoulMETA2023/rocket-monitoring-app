@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Terminal, {Message} from "./terminal"
 import Visualizer from "./visualizer";
 

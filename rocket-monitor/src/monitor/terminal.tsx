@@ -1,4 +1,4 @@
-import {ReactElement, useRef, useEffect} from "react"
+import React, {ReactElement, useRef, useEffect} from "react"
 
 interface TerminalProps {
     children: ReactElement[] | ReactElement
