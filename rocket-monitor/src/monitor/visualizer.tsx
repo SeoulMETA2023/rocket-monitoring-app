@@ -1,8 +1,8 @@
-import {useRef} from "react";
+import React, {useRef} from "react";
 // import { createRoot } from 'react-dom/client'
 import {Canvas, useFrame, useLoader} from '@react-three/fiber'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
-import {Box3, Group, Object3DEventMap, Vector3} from "three";
+import {Box3, Group, Vector3} from "three";
 
 interface VisualizerProps {
     visible?: boolean
@@ -20,8 +20,7 @@ export default function Visualizer(props: VisualizerProps) {
     }
 
     return (
-        <Canvas className={"bg-gear-black border-dim-gray border-2 rounded-xl" + ` ${visible? "" : "invisible"}`}
-                camera={{"fov": 80, "position": [0, 0, 0]}} >
+        <Canvas className={`bg-gear-black border-dim-gray border-2 rounded-xl ${visible? "" : "invisible"}`}>
             <ambientLight intensity={0.6} />
             <directionalLight position={[0, 0, 10]}/>
             <RocketObject path={props.path}/>
@@ -32,9 +31,9 @@ export default function Visualizer(props: VisualizerProps) {
 function RocketObject(props: RocketObjectProps) {
     const obj = useLoader(OBJLoader, props.path)
 
-    const rocketRef = useRef<Group<Object3DEventMap>>()
+    const rocketRef = useRef<Group>()
 
-    useFrame(({}) => {
+    useFrame((_) => {
         const currentRocket = rocketRef.current
         if (currentRocket === undefined) {
             return
