@@ -4,16 +4,10 @@ import {Canvas, useFrame, useLoader} from '@react-three/fiber'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import {Box3, Group, Vector3} from "three";
 
-interface VisualizerProps {
+export default function Visualizer(props: {
     visible?: boolean
     path: string
-}
-
-interface RocketObjectProps {
-    path: string
-}
-
-export default function Visualizer(props: VisualizerProps) {
+}) {
     let visible = true
     if (props.visible === undefined || !props.visible) {
         visible = false
@@ -28,7 +22,9 @@ export default function Visualizer(props: VisualizerProps) {
     )
 }
 
-function RocketObject(props: RocketObjectProps) {
+function RocketObject(props: {
+    path: string
+}) {
     const obj = useLoader(OBJLoader, props.path)
 
     const rocketRef = useRef<Group>()

@@ -1,15 +1,8 @@
 import React, {ReactElement, useRef, useEffect} from "react"
 
-interface TerminalProps {
+export default function Terminal(props: {
     children: ReactElement[] | ReactElement
-}
-
-interface MessageProps {
-    timestamp: number
-    content: string
-}
-
-export default function Terminal(props: TerminalProps) {
+}) {
     const containerRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
@@ -39,7 +32,10 @@ export default function Terminal(props: TerminalProps) {
     )
 }
 
-export function Message(props: MessageProps) {
+export function Message(props: {
+    timestamp: number
+    content: string
+}) {
     const date = new Date(props.timestamp * 1000)
 
     return (

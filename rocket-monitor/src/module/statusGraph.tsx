@@ -17,18 +17,16 @@ ChartJS.register(
     Title,
 );
 
-interface StatusLineProps {
-    title: string
+export function StatusLine(props: {
+    title: string,
     y: {
-        max: number
-        min: number
+        max: number,
+        min: number,
         step: number
-    }
-    dataSets: number[]
+    },
+    dataSets: number[],
     color: string
-}
-
-export function StatusLine(props: StatusLineProps) {
+}) {
     const options = {
         maintainAspectRatio: false,
         responsive: true,
