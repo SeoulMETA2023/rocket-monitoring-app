@@ -27,7 +27,7 @@ function App() {
 
     return (
         <Fragment>
-            <div className={`w-full h-screen bg-gear-black grid place-items-center absolute duration-500 z-10 ${isConnected? "opacity-0" : "opacity-100"}`}>
+            <div className={`w-full h-screen bg-gear-black grid place-items-center absolute duration-500 z-10 ${isConnected? "invisible" : "visible"}`}>
                 <div className={"w-52 flex flex-col items-center gap-7"}>
                     <img src={"meta_icon(white).svg"} alt={"meta logo"} className={"w-full animate-loading"}/>
                     <div className={"text-white font-bold text-2xl font-noto-sans"}>
