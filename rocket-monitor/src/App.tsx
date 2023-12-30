@@ -1,8 +1,8 @@
 import React, {Fragment, useEffect, useState} from "react";
 
+import {socket} from "./socket";
 import RCSMonitor from "./monitor/rcs";
 import CandyMonitor from "./monitor/candy";
-import {socket} from "./socket";
 
 function App() {
     const [isConnected, setIsConnected] = useState<boolean>(socket.connected);
@@ -36,7 +36,7 @@ function App() {
                 </div>
             </div>
             <div className={"h-screen bg-gear-black grid grid-cols-2"}>
-                <RCSMonitor/>
+                <RCSMonitor isConnected={isConnected}/>
                 <CandyMonitor/>
             </div>
         </Fragment>

@@ -1,18 +1,20 @@
-import React, {ReactElement, useRef, useEffect} from "react"
+import React, {ReactElement, useRef, useEffect, useState} from "react"
 
 export default function Terminal(props: {
-    children: ReactElement[] | ReactElement
+    children?: ReactElement[] | ReactElement
 }) {
     const containerRef = useRef<HTMLDivElement | null>(null)
+    const [latestScroll, setLatestScroll] = useState<number>(0)
 
     useEffect(() => {
         const container = containerRef.current
         if (container === null) {
-            return
+            return;
         }
 
-        if (container.scrollHeight <= container.offsetHeight) {
-            container.scrollTo(0, container.offsetHeight)
+        if (latestScroll <= container.scrollTop + container.offsetHeight) {
+            setLatestScroll(container.scrollTop + container.offsetHeight)
+            container.scrollTo(0, container.scrollHeight);
         }
     }, [props.children])
 
@@ -36,7 +38,7 @@ export function Message(props: {
     timestamp: number
     content: string
 }) {
-    const date = new Date(props.timestamp * 1000)
+    const date = new Date(props.timestamp)
 
     return (
         <div>
