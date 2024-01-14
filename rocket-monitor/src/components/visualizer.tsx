@@ -15,7 +15,7 @@ export default function Visualizer(props: {
     const [num, setNum] = useState(0)
 
     return (
-        <Canvas className={`bg-gear-black border-dim-gray border-2 rounded-xl ${visible? "" : "invisible"}`}>
+        <Canvas className={`bg-gear-black ${visible? "" : "invisible"}`}>
             <RocketObject path={props.path} rotation={{x: 0, y: 0, z: 0}}/>
         </Canvas>
     )

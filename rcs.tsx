@@ -1,9 +1,8 @@
+/* eslint-disable */
+
 import React, {useEffect, useState} from 'react';
 
 import {socket} from "../socket";
-import Terminal, {Message} from "../module/terminal"
-import Visualizer from "../module/visualizer";
-import {StatusLine} from "../module/statusGraph";
 
 interface Props {
     isConnected: boolean
@@ -29,56 +28,6 @@ interface RocketStatus {
 }
 
 export default function RCSMonitor({isConnected}: Props) {
-    const [terminalLog, setTerminalLog] = useState<LogData[]>([]);
-    const [isRCSConnected, setIsRCSConnected] = useState<boolean>(false);
-    const [statusData, setStatusData] = useState<RocketStatus[]>([]);
-
-    function addLog(timestamp: number, content: string) {
-        setTerminalLog((prevState) => {
-            return [...prevState, {timestamp: timestamp, content: content}]
-        });
-    }
-
-    useEffect(() => {
-        setTerminalLog([]);
-        if (isConnected) {
-            addLog(Date.now(), "SERVER CONNECTED");
-            addLog(Date.now(), "Connecting Rocket...");
-        } else {
-            setIsRCSConnected(false);
-        }
-
-        if (isRCSConnected) {
-            addLog(Date.now(), "Rocket Connected");
-        }
-    }, [isConnected]);
-
-    useEffect(() => {
-        function onRCSConnected() {
-            setIsRCSConnected(true)
-            addLog(Date.now(), "Rocket Connected");
-        }
-
-        function onRCSDisconnected() {
-            setIsRCSConnected(false)
-            setIsRCSConnected(true)
-            addLog(Date.now(), "Connecting Rocket...");
-        }
-
-        function onUpdateStatus(value: RocketStatus) {
-            addLog(Date.now(), `Status Updated: ${JSON.stringify(value)}`)
-        }
-
-        socket.on("RCSConnect", onRCSConnected);
-        socket.on("RCSDisconnect", onRCSDisconnected);
-        socket.on("updateStatus", onUpdateStatus);
-
-        return () => {
-            socket.off("RCSConnect", onRCSConnected);
-            socket.off("RCSDisconnect", onRCSDisconnected);
-            socket.off("updateStatus", onUpdateStatus);
-        };
-    }, []);
 
     return(
         <section className={"m-5 grid grid-cols-12 grid-rows-10 gap-2 overflow-hidden"}>
